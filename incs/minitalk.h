@@ -6,7 +6,7 @@
 /*   By: lea <lea@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 18:38:46 by lea               #+#    #+#             */
-/*   Updated: 2022/07/05 22:46:10 by lea              ###   ########.fr       */
+/*   Updated: 2022/07/06 19:20:52 by lea              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include <signal.h>
 # include <unistd.h>
-//# include <sys/types.h>
-# include "libft/libft.h"
+# include <sys/types.h>
+# include "../srcs/libft/libft.h"
 
 void	error_exit(int error);
 

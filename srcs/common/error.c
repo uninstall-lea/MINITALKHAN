@@ -6,11 +6,11 @@
 /*   By: lea <lea@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 19:46:22 by lea               #+#    #+#             */
-/*   Updated: 2022/07/05 23:16:44 by lea              ###   ########.fr       */
+/*   Updated: 2022/07/06 19:21:15 by lea              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../minitalk.h"
+# include "../../incs/minitalk.h"
 
 void	error_exit(int error)
 {

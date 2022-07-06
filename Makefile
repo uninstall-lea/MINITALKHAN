@@ -1,33 +1,36 @@
 CFLAGS =	-Wall -Wextra -Werror -g3 -I.
-EXEC1 =		server
-EXEC2 =		client
-LIBPATH =	libft/
+SERVER =	server
+CLIENT =	client
+LIBPATH =	srcs/libft/
 LIB =		libft.a
 
-SRCS1 =		server/main_server.c	\
-			common/error.c			\
+SRC_S =		srcs/serv/main_server.c	\
+			srcs/common/error.c			
 
-SRCS2 =		client/main_client.c	\
-			common/error.c			\
+SRC_C =		srcs/cli/main_client.c	\
+			srcs/common/error.c			
 
-OBJS1 =		$(SRCS1:.c=.o)
+OBJ_S =		$(SRC_S:.c=.o)
 
-OBJS2 = 	$(SRCS2:.c=.o)
+OBJ_C = 	$(SRC_C:.c=.o)
 
-all : 		$(EXEC1) $(EXEC2)
+all : 		$(LIB) $(SERVER) $(CLIENT)
 
-$(EXEC1) :	$(OBJS1)
-			gcc $(CFLAGS) $(OBJS1) -o $(EXEC1) $(LIBPATH)$(LIB)
+$(LIB) :
+			make -C $(LIBPATH)
 
-$(EXEC2) :	$(OBJS2)
-			gcc $(CFLAGS) $(OBJS2) -o $(EXEC2) $(LIBPATH)$(LIB)
+$(SERVER) :	$(OBJ_S)
+			gcc $(CFLAGS) $(OBJ_S) -o $(SERVER) $(LIBPATH)$(LIB)
+
+$(CLIENT) :	$(OBJ_C)
+			gcc $(CFLAGS) $(OBJ_C) -o $(CLIENT) $(LIBPATH)$(LIB)
 
 clean :		
-			rm -f $(OBJS1) $(OBJS2)
+			rm -f $(OBJ_S) $(OBJ_C)
 			make -C $(LIBPATH) clean
 
 fclean :	clean
-			rm -f $(EXEC1) $(EXEC2)
+			rm -f $(SERVER) $(CLIENT)
 			make -C $(LIBPATH) fclean
 
 re :		fclean all
