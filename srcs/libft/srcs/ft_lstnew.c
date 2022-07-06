@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lea <lea@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/05 19:46:22 by lea               #+#    #+#             */
-/*   Updated: 2022/07/06 22:00:07 by lea              ###   ########.fr       */
+/*   Created: 2021/11/30 16:47:06 by lbisson           #+#    #+#             */
+/*   Updated: 2022/07/06 22:36:24 by lea              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../incs/minitalk.h"
+#include "../incs/libft.h"
 
-void	error_exit(int error)
+t_list	*ft_lstnew(void *content)
 {
-    if (error == 1)
-		ft_printf("Expected : ./client [server-PID] [server message]\n");
-	else if (error == 2)
-		ft_printf("Bad PID\n");
-	else if (error == 3)
-		ft_printf("Bad malloc\n");
-	exit(EXIT_FAILURE);
+	t_list	*new_elem;
+
+	new_elem = malloc(sizeof(t_list) * 1);
+	if (!new_elem)
+		return (NULL);
+	new_elem->content = content;
+	new_elem->next = NULL;
+	return (new_elem);
 }

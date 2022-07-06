@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lea <lea@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/05 19:46:22 by lea               #+#    #+#             */
-/*   Updated: 2022/07/06 22:00:07 by lea              ###   ########.fr       */
+/*   Created: 2021/11/25 12:55:08 by lbisson           #+#    #+#             */
+/*   Updated: 2022/07/06 22:38:00 by lea              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../incs/minitalk.h"
+#include "../incs/libft.h"
 
-void	error_exit(int error)
+int	ft_strncmp(const char *first, const char *second, size_t n)
 {
-    if (error == 1)
-		ft_printf("Expected : ./client [server-PID] [server message]\n");
-	else if (error == 2)
-		ft_printf("Bad PID\n");
-	else if (error == 3)
-		ft_printf("Bad malloc\n");
-	exit(EXIT_FAILURE);
+	size_t			i;
+	unsigned char	*f;
+	unsigned char	*s;
+
+	i = 0;
+	f = (unsigned char *) first;
+	s = (unsigned char *) second;
+	if (n == 0)
+		return (0);
+	while (i < n - 1 && first[i] == second[i] && first[i] && second[i])
+		i++;
+	return (f[i] - s[i]);
 }

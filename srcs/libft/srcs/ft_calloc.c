@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lea <lea@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/05 19:46:22 by lea               #+#    #+#             */
-/*   Updated: 2022/07/06 22:00:07 by lea              ###   ########.fr       */
+/*   Created: 2021/11/25 16:51:21 by lbisson           #+#    #+#             */
+/*   Updated: 2022/07/06 22:34:24 by lea              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../incs/minitalk.h"
+#include "../incs/libft.h"
 
-void	error_exit(int error)
+void	*ft_calloc(size_t elem_size, size_t elem_count)
 {
-    if (error == 1)
-		ft_printf("Expected : ./client [server-PID] [server message]\n");
-	else if (error == 2)
-		ft_printf("Bad PID\n");
-	else if (error == 3)
-		ft_printf("Bad malloc\n");
-	exit(EXIT_FAILURE);
+	void	*new_elem;
+
+	if (elem_size == 0 || elem_count == 0)
+	{
+		elem_size = 1;
+		elem_count = 1;
+	}
+	new_elem = malloc(elem_size * elem_count);
+	if (!new_elem)
+		return (NULL);
+	ft_bzero(new_elem, elem_size * elem_count);
+	return (new_elem);
 }

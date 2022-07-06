@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lea <lea@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/05 19:46:22 by lea               #+#    #+#             */
-/*   Updated: 2022/07/06 22:00:07 by lea              ###   ########.fr       */
+/*   Created: 2021/11/30 15:34:44 by lbisson           #+#    #+#             */
+/*   Updated: 2022/07/06 22:37:05 by lea              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../incs/minitalk.h"
+#include "../incs/libft.h"
 
-void	error_exit(int error)
+void	ft_putchar_fd(char c, int fd)
 {
-    if (error == 1)
-		ft_printf("Expected : ./client [server-PID] [server message]\n");
-	else if (error == 2)
-		ft_printf("Bad PID\n");
-	else if (error == 3)
-		ft_printf("Bad malloc\n");
-	exit(EXIT_FAILURE);
+	write(fd, &c, 1);
 }

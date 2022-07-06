@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lea <lea@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/05 19:46:22 by lea               #+#    #+#             */
-/*   Updated: 2022/07/06 22:00:07 by lea              ###   ########.fr       */
+/*   Created: 2021/11/25 13:39:01 by lbisson           #+#    #+#             */
+/*   Updated: 2022/07/06 22:36:41 by lea              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../incs/minitalk.h"
+#include "../incs/libft.h"
 
-void	error_exit(int error)
+int	ft_memcmp(const void *ptr1, const void *ptr2, size_t n)
 {
-    if (error == 1)
-		ft_printf("Expected : ./client [server-PID] [server message]\n");
-	else if (error == 2)
-		ft_printf("Bad PID\n");
-	else if (error == 3)
-		ft_printf("Bad malloc\n");
-	exit(EXIT_FAILURE);
+	size_t			i;
+	unsigned char	*p1;
+	unsigned char	*p2;
+
+	i = 0;
+	p1 = (unsigned char *) ptr1;
+	p2 = (unsigned char *) ptr2;
+	if (n == 0)
+		return (0);
+	while (i < n - 1 && p1[i] == p2[i])
+		i++;
+	return (p1[i] - p2[i]);
 }

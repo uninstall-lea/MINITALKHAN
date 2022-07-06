@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lea <lea@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/05 19:46:22 by lea               #+#    #+#             */
-/*   Updated: 2022/07/06 22:00:07 by lea              ###   ########.fr       */
+/*   Created: 2021/11/25 15:44:38 by lbisson           #+#    #+#             */
+/*   Updated: 2022/07/06 22:38:05 by lea              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../incs/minitalk.h"
+#include "../incs/libft.h"
 
-void	error_exit(int error)
+char	*ft_strnstr(const char *big, const char *smol, size_t len)
 {
-    if (error == 1)
-		ft_printf("Expected : ./client [server-PID] [server message]\n");
-	else if (error == 2)
-		ft_printf("Bad PID\n");
-	else if (error == 3)
-		ft_printf("Bad malloc\n");
-	exit(EXIT_FAILURE);
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	if (smol[j] == '\0')
+		return ((char *)big);
+	while (i + j < len && big[i])
+	{
+		while (i + j < len && big[i + j] == smol[j] && big[i + j] && smol[j])
+			j++;
+		if (!smol[j])
+			return ((char *)big + i);
+		j = 0;
+		i++;
+	}	
+	return (NULL);
 }

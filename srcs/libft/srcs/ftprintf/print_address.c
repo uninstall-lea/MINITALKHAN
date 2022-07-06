@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   print_address.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lea <lea@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/05 19:46:22 by lea               #+#    #+#             */
-/*   Updated: 2022/07/06 22:00:07 by lea              ###   ########.fr       */
+/*   Created: 2021/12/16 20:27:35 by lbisson           #+#    #+#             */
+/*   Updated: 2022/07/06 22:23:12 by lea              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../incs/minitalk.h"
+#include "../../incs/libft.h"
 
-void	error_exit(int error)
+int	print_address(va_list args)
 {
-    if (error == 1)
-		ft_printf("Expected : ./client [server-PID] [server message]\n");
-	else if (error == 2)
-		ft_printf("Bad PID\n");
-	else if (error == 3)
-		ft_printf("Bad malloc\n");
-	exit(EXIT_FAILURE);
+	char	*str;
+	int		len;
+
+	str = ft_ultoa_base(va_arg(args, unsigned long), "0123456789abcdef", 16);
+	len = ft_strlen(str);
+	write(1, "0x", 2);
+	write(1, str, len);
+	free(str);
+	return (len + 2);
 }

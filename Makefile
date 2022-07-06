@@ -1,8 +1,10 @@
 CFLAGS =	-Wall -Wextra -Werror -g3 -I.
 SERVER =	server
 CLIENT =	client
+
+/* LIBFT */
 LIBPATH =	srcs/libft/
-LIB =		libft.a
+LIBFT =		libft.a
 
 SRC_S =		srcs/serv/main_server.c	\
 			srcs/common/error.c			
@@ -14,7 +16,7 @@ OBJ_S =		$(SRC_S:.c=.o)
 
 OBJ_C = 	$(SRC_C:.c=.o)
 
-all : 		$(LIB) $(SERVER) $(CLIENT)
+all : 		$(LIBFT) $(SERVER) $(CLIENT)
 
 $(LIB) :
 			make -C $(LIBPATH)

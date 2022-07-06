@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lea <lea@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/05 19:46:22 by lea               #+#    #+#             */
-/*   Updated: 2022/07/06 22:00:07 by lea              ###   ########.fr       */
+/*   Created: 2021/11/26 14:51:38 by lbisson           #+#    #+#             */
+/*   Updated: 2022/07/06 22:38:13 by lea              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../incs/minitalk.h"
+#include "../incs/libft.h"
 
-void	error_exit(int error)
+char	*ft_strtrim(const char *s1, const char *set)
 {
-    if (error == 1)
-		ft_printf("Expected : ./client [server-PID] [server message]\n");
-	else if (error == 2)
-		ft_printf("Bad PID\n");
-	else if (error == 3)
-		ft_printf("Bad malloc\n");
-	exit(EXIT_FAILURE);
+	size_t	len;
+	size_t	start;
+
+	if (!s1)
+		return (NULL);
+	len = 0;
+	start = 0;
+	while (s1[start] && ft_strchr(set, s1[start]))
+		start++;
+	len = ft_strlen(s1);
+	while (len && ft_strchr(set, s1[len - 1]))
+		len--;
+	return (ft_substr(s1 + start, 0, len - start));
 }
