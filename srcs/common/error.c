@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lea <lea@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: lbisson <lbisson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 19:46:22 by lea               #+#    #+#             */
-/*   Updated: 2022/07/06 22:00:07 by lea              ###   ########.fr       */
+/*   Updated: 2022/07/13 04:01:29 by lbisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	error_exit(int error)
 {
     if (error == 1)
-		ft_printf("Expected : ./client [server-PID] [server message]\n");
+		ft_printf("Expected : ./client [server-PID] [message]\n");
 	else if (error == 2)
 		ft_printf("Bad PID\n");
 	else if (error == 3)

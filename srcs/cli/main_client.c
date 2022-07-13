@@ -6,13 +6,13 @@
 /*   By: lbisson <lbisson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 19:44:22 by lea               #+#    #+#             */
-/*   Updated: 2022/07/13 02:40:05 by lbisson          ###   ########.fr       */
+/*   Updated: 2022/07/13 03:36:19 by lbisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minitalk.h"
 
-void	send_char_to_bin(pid_t pid, char *str)
+static void	send_bin(pid_t pid, char *str)
 {
 	int		i;
 	int		bits;
@@ -28,7 +28,7 @@ void	send_char_to_bin(pid_t pid, char *str)
 			else
 				kill(pid, SIGUSR1);
 			bits--;
-			usleep(100);
+			usleep(10);
 		}
 		i++;
 	}
@@ -44,6 +44,6 @@ int	main(int ac, char **av)
 	// verif si que chiffre avec ft_isdigit
 	if (pid <= 0)
 		error_exit(2);
-	send_char_to_bin(pid, av[2]);
+	send_bin(pid, av[2]);
 	return (1);
 }
