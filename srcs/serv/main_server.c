@@ -6,28 +6,45 @@
 /*   By: lbisson <lbisson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:30:43 by lea               #+#    #+#             */
-/*   Updated: 2022/07/13 03:47:40 by lbisson          ###   ########.fr       */
+/*   Updated: 2022/07/13 18:02:01 by lbisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minitalk.h"
 
+static void	print_bin_to_char(char *given_bin)
+{
+	char	c;
+	int		i;
+	int		pow;
+	c = 0;
+	i = 0;
+	pow = 128;
+	while (given_bin[i])
+	{	
+		if (given_bin[i] != '0')
+			c += pow;
+		i++;
+		pow /= 2;
+	}
+	write(1, &c, 1);
+}
+
 void	handler(int sigid)
 {
-	static int				i = 0;
-	static unsigned char	value = 0;
+	static int	i = 0;
+	static char	value[9];
 
-	value <<= 1;
-	if (sigid == SIGUSR2)
-		value++;
+	if (sigid == SIGUSR1)
+		value[i] = '0';
+	else if (sigid == SIGUSR2)
+		value[i] = '1';
 	i++;
 	if (i >= 8)
 	{
 		i = 0;
-		write(1, &value, 1);
-		value = 0;
+		print_bin_to_char(value);
 	}
-	
 }
 
 int	main(void)

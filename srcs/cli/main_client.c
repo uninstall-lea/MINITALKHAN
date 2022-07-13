@@ -6,7 +6,7 @@
 /*   By: lbisson <lbisson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 19:44:22 by lea               #+#    #+#             */
-/*   Updated: 2022/07/13 03:36:19 by lbisson          ###   ########.fr       */
+/*   Updated: 2022/07/13 18:02:36 by lbisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	send_bin(pid_t pid, char *str)
 			else
 				kill(pid, SIGUSR1);
 			bits--;
-			usleep(10);
+			usleep(100);
 		}
 		i++;
 	}
