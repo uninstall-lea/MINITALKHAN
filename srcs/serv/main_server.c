@@ -6,7 +6,7 @@
 /*   By: lbisson <lbisson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:30:43 by lea               #+#    #+#             */
-/*   Updated: 2022/07/13 18:02:01 by lbisson          ###   ########.fr       */
+/*   Updated: 2022/07/13 22:16:08 by lbisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,26 @@ static void	print_bin_to_char(char *given_bin)
 	write(1, &c, 1);
 }
 
-void	handler(int sigid)
+void	sighandler(int sigid, siginfo_t *data, void *whatev)
 {
 	static int	i = 0;
 	static char	value[9];
 
+	(void)whatev;
 	if (sigid == SIGUSR1)
+	{
 		value[i] = '0';
+		if (kill(data->si_pid, SIGUSR1) == -1)
+			ft_printf("Bad signal in server\n");
+	}
 	else if (sigid == SIGUSR2)
+	{
 		value[i] = '1';
+		if (kill(data->si_pid, SIGUSR1) == -1)
+			ft_printf("Bad signal in server\n");
+	}
 	i++;
-	if (i >= 8)
+	if (i == 8 && !value[i])
 	{
 		i = 0;
 		print_bin_to_char(value);
@@ -49,9 +58,12 @@ void	handler(int sigid)
 
 int	main(void)
 {
+	struct sigaction	sig;
+	
 	ft_printf("Server PID : %d\n", getpid());
-	signal(SIGUSR1, &handler);
-	signal(SIGUSR2, &handler);
+	sigemptyset(&sig.sa_mask);
+	sig.sa_flags = SA_SIGINFO;
+	sig.sa_sigaction = &sighandler;
 	while (1)
 		pause();
 	return (1);
