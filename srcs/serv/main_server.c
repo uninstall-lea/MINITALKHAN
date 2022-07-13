@@ -3,20 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   main_server.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbisson <lbisson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lea <lea@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:30:43 by lea               #+#    #+#             */
-/*   Updated: 2022/07/13 22:16:08 by lbisson          ###   ########.fr       */
+/*   Updated: 2022/07/14 01:38:01 by lea              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minitalk.h"
 
-static void	print_bin_to_char(char *given_bin)
+char	*g_str = NULL;
+
+static char	bin_to_char(char *given_bin)
 {
 	char	c;
 	int		i;
 	int		pow;
+
 	c = 0;
 	i = 0;
 	pow = 128;
@@ -27,7 +30,30 @@ static void	print_bin_to_char(char *given_bin)
 		i++;
 		pow /= 2;
 	}
-	write(1, &c, 1);
+	return (c);
+}
+
+void	*ft_charjoin(char *s1, const char c)
+{
+	size_t	i;
+	size_t	s1_len;
+	char	*new_str;
+
+	s1_len = ft_strlen(s1);
+	new_str = malloc(sizeof(char) * (s1_len + 2));
+	if (new_str == NULL)
+		return (NULL);
+	i = 0;
+	while (i < s1_len)
+	{
+		new_str[i] = s1[i];
+		i++;
+	}
+	new_str[s1_len] = c;
+	new_str[s1_len + 1] = '\0';
+	if (s1_len != 0)
+		free(s1);
+	return (new_str);
 }
 
 void	sighandler(int sigid, siginfo_t *data, void *whatev)
@@ -37,33 +63,31 @@ void	sighandler(int sigid, siginfo_t *data, void *whatev)
 
 	(void)whatev;
 	if (sigid == SIGUSR1)
-	{
 		value[i] = '0';
-		if (kill(data->si_pid, SIGUSR1) == -1)
-			ft_printf("Bad signal in server\n");
-	}
 	else if (sigid == SIGUSR2)
-	{
 		value[i] = '1';
-		if (kill(data->si_pid, SIGUSR1) == -1)
-			ft_printf("Bad signal in server\n");
-	}
 	i++;
 	if (i == 8 && !value[i])
 	{
 		i = 0;
-		print_bin_to_char(value);
+		g_str = ft_charjoin(g_str, bin_to_char(value));
+		if (bin_to_char(value) == '\0')
+			ft_printf("%s", g_str);
 	}
+	if (kill(data->si_pid, SIGUSR1) == -1)
+		error_exit(5);
 }
 
 int	main(void)
 {
 	struct sigaction	sig;
-	
+
 	ft_printf("Server PID : %d\n", getpid());
 	sigemptyset(&sig.sa_mask);
 	sig.sa_flags = SA_SIGINFO;
 	sig.sa_sigaction = &sighandler;
+	sigaction(SIGUSR1, &sig, NULL);
+	sigaction(SIGUSR2, &sig, NULL);
 	while (1)
 		pause();
 	return (1);

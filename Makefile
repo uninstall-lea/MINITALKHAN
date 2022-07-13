@@ -1,4 +1,4 @@
-CFLAGS =	-Wall -Wextra -Werror -g3 -fPIE -I.
+CFLAGS =	-Wall -Wextra -Werror -g3 -I.
 SERVER =	server
 CLIENT =	client
 

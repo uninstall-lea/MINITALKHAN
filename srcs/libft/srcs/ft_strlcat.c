@@ -6,11 +6,12 @@
 /*   By: lea <lea@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 17:03:42 by lbisson           #+#    #+#             */
-/*   Updated: 2022/07/06 22:37:42 by lea              ###   ########.fr       */
+/*   Updated: 2022/07/14 01:30:32 by lea              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/libft.h"
+
 static size_t	ft_strnlen(char *str, size_t n)
 {
 	size_t	i;
