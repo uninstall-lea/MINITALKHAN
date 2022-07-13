@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_client.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lea <lea@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: lbisson <lbisson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 19:44:22 by lea               #+#    #+#             */
-/*   Updated: 2022/07/06 21:33:53 by lea              ###   ########.fr       */
+/*   Updated: 2022/07/13 02:40:05 by lbisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,12 @@ void	send_char_to_bin(pid_t pid, char *str)
 		bits = 7;
 		while (bits >= 0)
 		{
-			if (str[i] >> bits & 0)
-			{
-				if (kill(pid, SIGUSR1) == -1)
-					error_exit(2);
-			}
-			else if (str[i] >> bits & 1)
-			{
-				if (kill(pid, SIGUSR2))
-					error_exit(2);
-			}
+			if ((str[i] >> bits) & 1)
+				kill(pid, SIGUSR2);
+			else
+				kill(pid, SIGUSR1);
 			bits--;
+			usleep(100);
 		}
 		i++;
 	}
@@ -46,10 +41,9 @@ int	main(int ac, char **av)
 	if (ac != 3)
 		error_exit(1);
 	pid = ft_atoi(av[1]);
+	// verif si que chiffre avec ft_isdigit
 	if (pid <= 0)
 		error_exit(2);
-	send_char_to_bin(pid, av[2]);	
-	while (1)
-		pause();
+	send_char_to_bin(pid, av[2]);
 	return (1);
 }

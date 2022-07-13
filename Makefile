@@ -1,33 +1,32 @@
-CFLAGS =	-Wall -Wextra -Werror -g3 -I.
+CFLAGS =	-Wall -Wextra -Werror -g3 -fPIE -I.
 SERVER =	server
 CLIENT =	client
 
-/* LIBFT */
 LIBPATH =	srcs/libft/
-LIBFT =		libft.a
+LIB =		libft.a
 
 SRC_S =		srcs/serv/main_server.c	\
 			srcs/common/error.c			
 
 SRC_C =		srcs/cli/main_client.c	\
-			srcs/common/error.c			
+			srcs/common/error.c	
 
 OBJ_S =		$(SRC_S:.c=.o)
 
-OBJ_C = 	$(SRC_C:.c=.o)
+OBJ_C =		$(SRC_C:.c=.o)
 
-all : 		$(LIBFT) $(SERVER) $(CLIENT)
+all :		$(LIB) $(SERVER) $(CLIENT)
 
 $(LIB) :
 			make -C $(LIBPATH)
 
 $(SERVER) :	$(OBJ_S)
-			gcc $(CFLAGS) $(OBJ_S) -o $(SERVER) $(LIBPATH)$(LIB)
+			gcc	$(CFLAGS) $(OBJ_S) -o $(SERVER) $(LIBPATH)$(LIB)
 
-$(CLIENT) :	$(OBJ_C)
+$(CLIENT) : $(OBJ_C)
 			gcc $(CFLAGS) $(OBJ_C) -o $(CLIENT) $(LIBPATH)$(LIB)
 
-clean :		
+clean :
 			rm -f $(OBJ_S) $(OBJ_C)
 			make -C $(LIBPATH) clean
 

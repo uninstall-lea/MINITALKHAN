@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lea <lea@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: lbisson <lbisson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 14:48:13 by lbisson           #+#    #+#             */
-/*   Updated: 2022/07/06 22:46:04 by lea              ###   ########.fr       */
+/*   Updated: 2022/07/12 17:36:31 by lbisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "ft_printf.h"
+# include "../srcs/ftprintf/ft_printf.h"
 
 typedef struct s_list
 {
@@ -45,6 +45,7 @@ char	*ft_strrchr(const char *s, int c);
 char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_ultoa_base(unsigned long nb, const char *base, size_t base_len);
+char	*ft_utoa_base(unsigned int nb, const char *base, size_t base_len);
 char	**ft_split(char const *s, char c);
 void	ft_bzero(void *s, size_t n);
 void	ft_lstadd_back(t_list **alst, t_list *new);

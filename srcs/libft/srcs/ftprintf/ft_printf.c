@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lea <lea@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: lbisson <lbisson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 20:27:05 by lbisson           #+#    #+#             */
-/*   Updated: 2022/07/06 22:52:28 by lea              ###   ########.fr       */
+/*   Updated: 2022/07/12 17:33:11 by lbisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/libft.h"
+#include "../../incs/libft.h"
 
 t_fptr	dispatch(const char conv)
 {

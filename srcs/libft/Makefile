@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lea <lea@student.42.fr>                    +#+  +:+       +#+         #
+#    By: lbisson <lbisson@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 14:47:59 by lbisson           #+#    #+#              #
-#    Updated: 2022/07/06 23:03:18 by lea              ###   ########.fr        #
+#    Updated: 2022/07/12 17:37:19 by lbisson          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,6 @@ SRCS = 	srcs/ft_atoi.c 			\
 		srcs/ft_memcpy.c 		\
 		srcs/ft_memmove.c 		\
 		srcs/ft_memset.c 		\
-		srcs/ft_printf 			\
 		srcs/ft_putchar_fd.c 	\
 		srcs/ft_putendl_fd.c 	\
 		srcs/ft_putnbr_fd.c 	\
@@ -60,6 +59,7 @@ SRCS = 	srcs/ft_atoi.c 			\
 		srcs/ft_toupper.c 		\
 		srcs/ft_ultoa_base.c	\
 		srcs/ft_utoa_base.c 	\
+		srcs/ftprintf/ft_printf.c 				\
 		srcs/ftprintf/print_address.c			\
 		srcs/ftprintf/print_char.c				\
 		srcs/ftprintf/print_hexa_lowercase.c	\
