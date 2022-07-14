@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_server.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lea <lea@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: lbisson <lbisson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:30:43 by lea               #+#    #+#             */
-/*   Updated: 2022/07/14 01:38:01 by lea              ###   ########.fr       */
+/*   Updated: 2022/07/14 14:59:00 by lbisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,11 @@ void	sighandler(int sigid, siginfo_t *data, void *whatev)
 		i = 0;
 		g_str = ft_charjoin(g_str, bin_to_char(value));
 		if (bin_to_char(value) == '\0')
+		{
 			ft_printf("%s", g_str);
+			free(g_str);
+			g_str = NULL;
+		}
 	}
 	if (kill(data->si_pid, SIGUSR1) == -1)
 		error_exit(5);
