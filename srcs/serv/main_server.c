@@ -6,7 +6,7 @@
 /*   By: lbisson <lbisson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:30:43 by lea               #+#    #+#             */
-/*   Updated: 2022/07/14 14:59:00 by lbisson          ###   ########.fr       */
+/*   Updated: 2022/07/14 15:22:53 by lbisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,10 @@ void	*ft_charjoin(char *s1, const char c)
 	s1_len = ft_strlen(s1);
 	new_str = malloc(sizeof(char) * (s1_len + 2));
 	if (new_str == NULL)
+	{
+		free(s1);
 		return (NULL);
+	}
 	i = 0;
 	while (i < s1_len)
 	{
@@ -51,8 +54,7 @@ void	*ft_charjoin(char *s1, const char c)
 	}
 	new_str[s1_len] = c;
 	new_str[s1_len + 1] = '\0';
-	if (s1_len != 0)
-		free(s1);
+	free(s1);
 	return (new_str);
 }
 
@@ -73,6 +75,8 @@ void	sighandler(int sigid, siginfo_t *data, void *whatev)
 		g_str = ft_charjoin(g_str, bin_to_char(value));
 		if (bin_to_char(value) == '\0')
 		{
+			if (!g_str)
+				error_exit(3);
 			ft_printf("%s", g_str);
 			free(g_str);
 			g_str = NULL;
